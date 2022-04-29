@@ -1,0 +1,36 @@
+﻿body {
+    background: url(/Images/CharacterSelection-background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1 {
+    color: red;
+    margin-bottom: 50px;
+}
+
+td {
+    text-align: center;
+    font-size: 1.5em;
+    width: 10em;
+}
+
+td a {
+    display: block;
+}
+
+td:hover {
+    background-color: rgba(1, 1, 1, 0.60);
+    position: relative;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+table {
+    border-top: solid 0.5px white;
+    /*border-collapse: unset;*/
+}
+

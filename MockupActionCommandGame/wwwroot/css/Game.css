@@ -1,0 +1,117 @@
+﻿body {
+    background: url(/Images/Game-background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+#page {
+    height: 100%;
+    border: solid 1px black;
+    background-color: antiquewhite;
+    border-radius: 8px;
+
+    background-color: rgba(248, 245, 222, 0.94); /*Pas hier opacity aan om achtergrond te kunnen zien*/
+
+    background-image: linear-gradient(to right, rgba(255,210,0,0.4), rgba(200, 160, 0, 0.1) 11%, rgba(0,0,0,0) 35%, rgba(200, 160, 0, 0.1) 65%);
+    box-shadow: inset 0 0 75px rgba(255,210,0,0.3), inset 0 0 20px rgba(255,210,0,0.4), inset 0 0 30px rgba(220,120,0,0.8);
+    color: rgba(0,0,0,0.8);
+    font-family: "AustralisProSwash-Italic";
+    
+}
+
+#page p {
+    padding-top: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 35px;
+}
+
+#page p span {
+    font-weight: bold;
+}
+
+#btnExplore {
+    height: 10%;
+    margin-top: 40px;
+}
+
+#inventory {
+    color: whitesmoke;
+
+}
+
+#inventory h1 {
+    font-size: 1.5em;
+}
+
+#inventory h2 {
+    font-size: 1.2em;
+    margin-top: 5px;
+}
+
+#inventory table tr {
+    width: 100%;
+}
+
+#inventory table th, td {
+    border: solid 1px grey;
+    padding: 5px;
+}
+
+#btnShop, #btnQuit {
+    margin-top: 20%;
+}
+
+
+
+#playerInfo {
+    text-align: center;
+}
+
+#playerInfo, #inventory {
+    margin-top: 15px;
+}
+
+#playerInfo img {
+    height: 175px;
+    width: 175px;
+    border: double 5px grey;
+    border-radius: 8px;
+}
+
+#playerXP {
+    width: 175px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#playerWallet {
+    color: greenyellow;
+    margin-top: 8px;
+}
+
+.progress {
+    margin: 0 auto;
+    margin-top: 15px;
+}
+
+.progress-bar {
+    background-color: lightgrey;
+    width: 175px;
+}
+
+#buttonRow {
+    /*margin-top: 100px;*/
+}
+
+.darker-seethru-bg {
+    background-color: rgba(1, 1, 1, 0.40);
+    position: relative;
+    border-radius: 8px;
+}
+
+#btnExplore {
+    background-color: rgba(146, 148, 248, 0.5);
+}
+

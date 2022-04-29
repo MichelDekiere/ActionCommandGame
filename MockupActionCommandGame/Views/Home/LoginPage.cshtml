@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewData["Title"] = "LoginPage";
+}
+<head>
+    <link rel="stylesheet" href="/css/LoginPage.css"/>
+</head>
+
+<div id="login">
+    <div class="col-4">
+        <h1>The Castle</h1>
+        
+        <div asp-validation-summary="ModelOnly"></div>
+        
+        <hr/>
+
+        <form method="post" asp-action="Login">
+            @model ActionCommandGame.Api.Authentication.Model.UserSignInRequest
+
+            <div class="form-group">
+                <label asp-for="Email">Email:</label>
+                <input asp-for="Email" value="bavo.ketels@vives.be" class="form-control"/>
+                <span asp-validation-for="Email"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password">Password:</label>
+                <input asp-for="Password" value="Test123$" class="form-control"/>
+                <span asp-validation-for="Password"></span>
+            </div>
+            <div class="form-group">
+                <label>
+                    <input @*asp-for="RememberMe"*@ type="checkbox"/>
+                    Remember me
+                </label>
+
+            </div>
+            <div class="form-group">
+                @*<a type="submit" asp-controller="Home" asp-action="Login" class="btn btn-lg btn-shine" id="btnLogin">Log in</a>*@
+                <button type="submit" class="btn btn-shine" class="btn-shine" id="btnLoginPage">LoginPage</button>
+                
+
+            </div>
+            <div class="form-group">
+                <p>
+                    <a href="#">Forgot your password?</a>
+                </p>
+                <p>
+                    <a asp-controller="Home" asp-action="Register">Register</a>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
