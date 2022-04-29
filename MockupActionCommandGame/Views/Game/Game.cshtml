@@ -1,0 +1,116 @@
+﻿@{
+    ViewData["Title"] = "The Castle";
+}
+<head>
+    <link rel="stylesheet" href="/css/Game.css"/>
+</head>
+
+<div class="container">
+    <div class="row">
+        @*INVENTORY*@
+        <section id="gameInventory" class="col-3 darker-seethru-bg">
+            <div id="inventory">
+                <div class="justify-content-center">
+                    <h1>Inventory</h1>
+                    <h2>Attack</h2>
+                    <table>
+                        <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Attack</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <partial name="InventoryAttackDefensePartial"/>
+                        </tbody>
+                    </table>
+
+                    <h2>Defense</h2>
+                    <table>
+                        <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Defense</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <partial name="InventoryAttackDefensePartial"/>
+                        </tbody>
+                    </table>
+
+                    <h2>Food</h2>
+                    <table>
+                        <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Fuel</td>
+                            <td>Cooldown (sec)</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <partial name="InventoryFuelPartial"/>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            
+            <a asp-controller="Shop" asp-action="Shop" class="btn btn-shine" id="btnShop">Shop</a>
+            
+        </section>
+        
+        @*MAIN*@
+        <section id="gameMain" class="justify-content-center col-7">
+            <div id="page">
+                <p>You awake... and have no idea where you are or how you got there. You look around and appear 
+                    to be in an abandoned castle or fortress of some sort. A cat passes by your leg and you decide
+                    to follow it. It leads you to some sort of shop, with a mysterious merchant behind the counter.
+                    <br/>You ask the merchant where you are and how you got there, but he doesn't answer. In fact he doesn't talk at all.
+                    The cat points your attention to a sign that says "Welcome Stranger! Anything you need?".
+                    <br/>
+                    <br/>
+                    &lt;You can now buy items in the store, see button 'SHOP' to the left, below 'Inventory'&gt;
+                    <br/>
+                    <br/>
+                    You hear an unnerving sound coming from all the way down the dark hallway. You have no clue what it could have been, 
+                    and won't stick around to find out.
+                    <br/>
+                    <span>We'll then, let's look for a way out of here!</span>
+                </p>
+            </div>
+        </section>
+        
+        @*PLAYERINFO*@
+        <section class="col-2 darker-seethru-bg">
+            <div class="justify-content-center" id="playerInfo">
+                <div>
+                    <img src="/Images/player.png"/>
+                </div>
+                <div class="progress" id="playerXP">
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: 125px">Player level</div>
+                </div>
+                <p id="playerWallet">€100</p>
+
+                <div class="progress" id="playerFood">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 45px">Food</div>
+                </div>
+
+                <div class="progress" id="playerAttack">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 60px">Attack</div>
+                </div>
+
+                <div class="progress" id="playerDefense">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 75px">Defense</div>
+                </div>
+            </div>
+
+            <a asp-controller="Home" asp-action="LoginPage" class="btn btn-shine" id="btnQuit">Quit</a>
+        </section>
+    </div>
+    <div class="row justify-content-center" id="buttonRow">
+
+          <a class="btn col-4 btn-shine" id="btnExplore">Explore</a>
+
+    </div>
+
+</div>
