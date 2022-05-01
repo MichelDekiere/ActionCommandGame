@@ -55,7 +55,7 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
         }
 
         *//*[HttpGet]
-        public IActionResult Register(string returnUrl)
+        public IActionResult RegisterPage(string returnUrl)
         {
             var registerModel = new RegisterModel
             {
@@ -65,7 +65,7 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
         }*/
 
         /*[HttpPost]
-        public async Task<IActionResult> Register(RegisterModel registerModel)
+        public async Task<IActionResult> RegisterPage(RegisterModel registerModel)
         {
             if (!ModelState.IsValid)
             {

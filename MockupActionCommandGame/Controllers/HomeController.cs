@@ -24,9 +24,6 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
         [Route("/identity/sign-in")]
         public async Task<IActionResult> Login([FromForm] UserSignInRequest signInRequest)
         {
-            Console.WriteLine(signInRequest.Email);
-            Console.WriteLine(signInRequest.Password);
-            
             var logInResult = await _identityApi.SignInAsync(signInRequest);
             
             if (logInResult.Success)
@@ -40,9 +37,29 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
             
         }
 
-        public IActionResult Register()
+        public IActionResult RegisterPage()
         {
             return View();
+        }
+
+
+        [Route("/identity/register")]
+        public async Task<IActionResult> Register([FromForm] UserRegistrationRequest registrationRequest)
+        {
+            Console.WriteLine(registrationRequest.Email);
+            Console.WriteLine(registrationRequest.Password);
+
+            var logInResult = await _identityApi.RegisterAsync(registrationRequest);
+
+            if (logInResult.Success)
+            {
+                return View("LoginPage");
+            }
+            else
+            {
+                return View("RegisterPage");
+            }
+
         }
 
         public IActionResult CharacterSelection()
