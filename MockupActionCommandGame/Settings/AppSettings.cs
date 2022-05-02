@@ -3,5 +3,6 @@
     public class AppSettings
     {
         public string ApiBaseUrl { get; set; }
+        public string SignInUrl{ get; set; }
     }
 }

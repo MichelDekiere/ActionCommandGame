@@ -1,4 +1,4 @@
-﻿@model ActionCommandGame.Ui.WebApp.Models.SignInModel
+﻿@model ActionCommandGame.Api.Authentication.Model.UserRegistrationRequest
 @{
     ViewData["Title"] = "LoginPage";
 }
@@ -17,9 +17,9 @@
             <hr/>
 
             <div class="form-group">
-                <label asp-for="Username">Email:</label>
-                <input asp-for="Username" class="form-control"/>
-                <span asp-validation-for="Username"></span>
+                <label asp-for="Email">Email:</label>
+                <input asp-for="Email" class="form-control"/>
+                <span asp-validation-for="Email"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Password">Password:</label>

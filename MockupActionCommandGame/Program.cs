@@ -3,6 +3,7 @@ using ActionCommandGame.Sdk.Abstractions;
 using ActionCommandGame.Sdk.Extensions;
 using ActionCommandGame.Ui.WebApp.Settings;
 using ActionCommandGame.Ui.WebApp.Stores;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,6 +28,15 @@ builder.Services.AddTransient<IdentityApi>();
 builder.Services.AddScoped<ITokenStore, TokenStore>();
 
 //--------------------------------------------------------------------------------
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, config => {
+        config.AccessDeniedPath = appSettings.SignInUrl;
+        config.LoginPath = appSettings.SignInUrl;
+
+    });
+
+//--------------------------------------------------------------------------------
+
 
 var app = builder.Build();
 
@@ -44,6 +54,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseAuthentication();
 
 app.MapControllerRoute(
     name: "default",
