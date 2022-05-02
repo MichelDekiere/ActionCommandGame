@@ -19,12 +19,12 @@
 
             <div class="form-group">
                 <label asp-for="Email">Email:</label>
-                <input asp-for="Email" value="bavo.ketels@vives.be" class="form-control"/>
+                <input asp-for="Email" class="form-control"/>
                 <span asp-validation-for="Email"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Password">Password:</label>
-                <input asp-for="Password" value="Test123$" class="form-control"/>
+                <input asp-for="Password" class="form-control"/>
                 <span asp-validation-for="Password"></span>
             </div>
             <div class="form-group">
@@ -45,7 +45,7 @@
                     <a href="#">Forgot your password?</a>
                 </p>
                 <p>
-                    <a asp-controller="Home" asp-action="Register">Register</a>
+                    <a asp-controller="Home" asp-action="RegisterPage">RegisterPage</a>
                 </p>
             </div>
         </form>

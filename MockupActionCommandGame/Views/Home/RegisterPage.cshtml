@@ -12,12 +12,12 @@
         
         <div asp-validation-summary="ModelOnly"></div>
 
-        <form method="post">
+        <form method="post" asp-action="Register">
 
             <hr/>
 
             <div class="form-group">
-                <label asp-for="Username">Username:</label>
+                <label asp-for="Username">Email:</label>
                 <input asp-for="Username" class="form-control"/>
                 <span asp-validation-for="Username"></span>
             </div>
@@ -28,8 +28,7 @@
             </div>
             
             <div class="form-group">
-                <a type="" asp-controller="Home" asp-action="LoginPage" class="btn btn-lg btn-shine" id="btnLogin">Register</a>
-                @*<button type="submit" class="btn btn-shine" class="btn-shine" id="btnLoginPage">LoginPage</button>*@
+                <button type="submit" class="btn btn-shine" class="btn-shine" id="btnLoginPage">Register</button>
 
             </div>
         </form>
