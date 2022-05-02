@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using ActionCommandGame.Api.Authentication.Model;
 using ActionCommandGame.Sdk;
+using ActionCommandGame.Sdk.Abstractions;
 using ActionCommandGame.Ui.WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +10,12 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
     public class HomeController : Controller
     {
         private readonly IdentityApi _identityApi;
+        private readonly ITokenStore _tokenStore;
 
-        public HomeController(IdentityApi identityApi)
+        public HomeController(IdentityApi identityApi, ITokenStore tokenStore)
         {
             _identityApi = identityApi;
+            _tokenStore = tokenStore;
         }
 
         public IActionResult LoginPage()
@@ -28,6 +31,8 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
             
             if (logInResult.Success)
             {
+                var token = logInResult.Token;
+                await _tokenStore.SaveTokenAsync(token);
                 return View("CharacterSelection");
             }
             else

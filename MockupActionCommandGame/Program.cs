@@ -32,6 +32,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, config => {
         config.AccessDeniedPath = appSettings.SignInUrl;
         config.LoginPath = appSettings.SignInUrl;
+        //config.ReturnUrlParameter = "/Shop/Shop";
 
     });
 
