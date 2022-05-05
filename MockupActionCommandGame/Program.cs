@@ -30,10 +30,13 @@ builder.Services.AddScoped<ITokenStore, TokenStore>();
 //--------------------------------------------------------------------------------
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, config => {
-        config.AccessDeniedPath = appSettings.SignInUrl;
         config.LoginPath = appSettings.SignInUrl;
-        //config.ReturnUrlParameter = "/Shop/Shop";
-
+        config.AccessDeniedPath = appSettings.SignInUrl;
+        
+        config.Cookie.HttpOnly = true;
+        config.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+        config.AccessDeniedPath = "/Home/LoginPage";
+        config.SlidingExpiration = true;
     });
 
 //--------------------------------------------------------------------------------
@@ -54,8 +57,11 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
-app.UseAuthentication();
+
+app.UseAuthentication();    // wie ben je?
+app.UseAuthorization();     // ben je toegelaten?
+
+app.UseCookiePolicy();
 
 app.MapControllerRoute(
     name: "default",

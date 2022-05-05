@@ -17,18 +17,19 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
             _identityApi = identityApi;
             _tokenStore = tokenStore;
         }
-
+        
         public IActionResult LoginPage()
         {
             return View();
         }
 
-        
+
         [Route("/identity/sign-in")]
         public async Task<IActionResult> Login([FromForm] UserSignInRequest signInRequest)
         {
            var logInResult = await _identityApi.SignInAsync(signInRequest);
-            
+
+          
             if (logInResult.Success)
             {
                 var token = logInResult.Token;
@@ -39,7 +40,7 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
             {
                 return View("LoginPage");
             }
-            
+           
         }
 
         public IActionResult RegisterPage()

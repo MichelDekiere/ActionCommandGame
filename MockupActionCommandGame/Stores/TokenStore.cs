@@ -47,7 +47,7 @@ namespace ActionCommandGame.Ui.WebApp.Stores
 
             var cookieOptions = new CookieOptions
             {
-                HttpOnly = true
+                HttpOnly = true,
             };
 
             _contextAccessor.HttpContext.Response.Cookies.Append("Jwt", token, cookieOptions);
