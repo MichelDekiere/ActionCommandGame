@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IList<ActionCommandGame.Services.Model.Results.ItemResult>
+@{
     ViewData["Title"] = "Shop";
 }
 
@@ -9,7 +10,7 @@
 <body>
 <div class="row">
     <div class="col-8">
-        <h1>Welcome Stranger! Anything you need?</h1>
+        <h1>@*Welcome Stranger! Anything you need?*@The Dukes Emporium</h1>
     </div>
     <div class="col-2">
         <a class="btn btn-shine" asp-controller="Game" asp-action="Game">Leave</a>
@@ -21,7 +22,34 @@
     
 </div>
 
-@*----AttackItems----*@
+@*@*----------------test---------------------*@
+<h2>Test</h2>
+
+<table class="table shopCategory">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Attack</th>
+        <th>Defense</th>
+        <th>Fuel</th>
+        <th>Price</th>
+        <th></th>
+    </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <partial name="ShopItemPartial" model=item/>
+        }
+    </tbody>
+    
+    
+</table>
+
+
+@*
 <h2>Attack Items</h2>
 <table class="table shopCategory">
     <thead>
@@ -33,16 +61,16 @@
     </tr>
     </thead>
     <tbody>
-    @*@foreach (var person in Model)
+    foreach (var item in Model)
     {
-        <partial name="ShopItemPartial" model=""/>
-    }*@
-    <partial name="ShopItemPartialAttackDefense"/>
+        <partial name="ShopItemPartialAttackDefense" model=""/>
+    }
+    
 
     </tbody>
 </table>
 
-@*----DefenseItems----*@
+
 <h2>Defense Items</h2>
 <table class="table shopCategory">
     <thead>
@@ -55,16 +83,16 @@
     </tr>
     </thead>
     <tbody>
-    @*@foreach (var person in Model)
+    @foreach (var item in Model)
     {
-        <partial name="ShopItemPartial" model=""/>
-    }*@
-    <partial name="ShopItemPartialAttackDefense"/>
+        <partial name="ShopItemPartialAttackDefense" model=""/>
+    }
+    
 
     </tbody>
 </table>
 
-@*----FuelItems----*@
+
 <h2>Energy Items</h2>
 <table class="table shopCategory">
     <thead>
@@ -78,15 +106,14 @@
     </tr>
     </thead>
     <tbody>
-    @*@foreach (var person in Model)
+    @foreach (var person in Model)
     {
         <partial name="ShopItemPartial" model=""/>
-    }*@
-    <partial name="ShopItemPartialFuel"/>
+    }
+    
 
     </tbody>
 </table>
-
-
+*@
 
 </body>

@@ -20,9 +20,10 @@ var serviceProvider = serviceCollection.BuildServiceProvider();
 var tokenStore = serviceProvider.GetRequiredService<ITokenStore>();
 
 var identitySdk = serviceProvider.GetRequiredService<IIdentityApi>();
+var itemApi = serviceProvider.GetRequiredService<IItemApi>();
 
-// Registeren
-Console.WriteLine("-----------------Registeren-----------------");
+//----------------------------- Registeren
+/*Console.WriteLine("-----------------Registeren-----------------");
 
 Console.Write("Email: ");
 var regEmail = Console.ReadLine();
@@ -38,25 +39,39 @@ var registerRequest = new UserRegistrationRequest()
 
 var registerResult = await identitySdk.RegisterAsync(registerRequest);
 
-Console.WriteLine($"Registeren gelukt? {registerResult.Success}\n");
+Console.WriteLine($"Registeren gelukt? {registerResult.Success}\n");*/
 
 
-// Inloggen
-Console.WriteLine("------------------Aanmelden------------------");
+//----------------------------- Inloggen -----------------------------
+/*Console.WriteLine("------------------Aanmelden------------------");
 
 Console.Write("Email: ");
 var email = Console.ReadLine();
 
 Console.Write("Password: ");
-var passWord = Console.ReadLine();
+var passWord = Console.ReadLine();*/
 
 var signInRequest = new UserSignInRequest()
 {
-    Email = email,
-    Password = passWord
+    Email = "bavo.ketels@vives.be",
+    Password = "Test123$"
 };
 
 
 var logInResult = await identitySdk.SignInAsync(signInRequest);
 
 Console.WriteLine(logInResult.Success);
+
+//----------------------------- Shop -----------------------------
+
+var result = await itemApi.FindAsync();
+
+if (!result.IsSuccess)
+{
+    Console.WriteLine("Niet gelukt");
+}
+
+foreach (var item in result.Data)
+{
+    Console.WriteLine(item.Name);
+}

@@ -19,16 +19,16 @@ var appSettings = new AppSettings();
 
 builder.Configuration.GetSection(nameof(appSettings)).Bind(appSettings);
 
-builder.Services.AddHttpClient("ActionCommandGame", httpClient =>
-{
-    httpClient.BaseAddress = new Uri(appSettings.ApiBaseUrl);
-});
 
-builder.Services.AddTransient<IdentityApi>();
+
+builder.Services.AddApi(appSettings.ApiBaseUrl);
+/*builder.Services.AddTransient<IdentityApi>();
+builder.Services.AddTransient<>();*/
+
 builder.Services.AddScoped<ITokenStore, TokenStore>();
 
 //--------------------------------------------------------------------------------
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+/*builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, config => {
         config.LoginPath = appSettings.SignInUrl;
         config.AccessDeniedPath = appSettings.SignInUrl;
@@ -37,12 +37,20 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         config.ExpireTimeSpan = TimeSpan.FromMinutes(5);
         config.AccessDeniedPath = "/Home/LoginPage";
         config.SlidingExpiration = true;
+    });*/
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, config =>
+    {
+        config.LoginPath = appSettings.SignInUrl;
+        config.AccessDeniedPath = appSettings.SignInUrl;
+        config.ExpireTimeSpan = TimeSpan.FromMinutes(5);
     });
 
 //--------------------------------------------------------------------------------
 
 
-var app = builder.Build();
+    var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -56,7 +64,6 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
 
 app.UseAuthentication();    // wie ben je?
 app.UseAuthorization();     // ben je toegelaten?

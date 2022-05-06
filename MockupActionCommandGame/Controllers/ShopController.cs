@@ -10,16 +10,25 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
     public class ShopController : Controller
     {
         private readonly ITokenStore _tokenStore;
+        private readonly IItemApi _itemApi;
 
-        public ShopController(ITokenStore tokenStore)
+        public ShopController(ITokenStore tokenStore, IItemApi itemApi)
         {
             _tokenStore = tokenStore;
+            _itemApi = itemApi;
         }
 
-        [Authorize]
-        public IActionResult Shop()
+        /*[Authorize]*/
+        public async Task<ActionResult> Shop()
         {
-            return View();
+            var result = await _itemApi.FindAsync();
+
+            if (!result.IsSuccess)
+            {
+                return RedirectToAction(controllerName: "Game", actionName: "Game");
+            }
+            
+            return View(result.Data);
         }
 
         public IActionResult Authenticate()

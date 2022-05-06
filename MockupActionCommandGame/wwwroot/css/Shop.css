@@ -2,6 +2,8 @@
     background: url(/Images/Shop-background.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 #wallet {
@@ -20,6 +22,11 @@
     background-color: rgba(216, 240, 218, 0.50);
     min-width: 100%;
     position: relative;
+}
+
+#storeTable {
+    overflow: scroll;
+    height: 200px;
 }
 
 h1, h2 {

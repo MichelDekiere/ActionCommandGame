@@ -4,6 +4,7 @@ namespace ActionCommandGame.Ui.WebApp.Stores
 {
     public class TokenStore : ITokenStore
     {
+        private const string TokenName = "Jwt";
         private readonly IHttpContextAccessor _contextAccessor;
 
         public TokenStore(IHttpContextAccessor contextAccessor)
@@ -11,46 +12,39 @@ namespace ActionCommandGame.Ui.WebApp.Stores
             _contextAccessor = contextAccessor;
         }
 
-        public async Task<string> GetTokenAsync()
+        public Task<string> GetTokenAsync()
         {
-            if (_contextAccessor.HttpContext is null)
+            var httpContext = _contextAccessor.HttpContext;
+
+            if (httpContext is null)
             {
-                return string.Empty;
+                return Task.FromResult(string.Empty);
             }
 
             // Get Token from JWT Cookie
-            if (_contextAccessor.HttpContext.Request.Cookies.ContainsKey("Jwt"))
-            {
-                var jwtToken = _contextAccessor.HttpContext.Request.Cookies["Jwt"];
-                if (jwtToken is null)
-                {
-                    return string.Empty;
-                }
-
-                return jwtToken;
-            }
-
-            return string.Empty;
+            httpContext.Request.Cookies.TryGetValue(TokenName, out string? token);
+            
+            var tokenResult = token ?? string.Empty;
+            return Task.FromResult(tokenResult);
         }
 
-        public async Task SaveTokenAsync(string token)
+        public Task SaveTokenAsync(string token)
         {
-            if (_contextAccessor.HttpContext is null)
+            var httpContext = _contextAccessor.HttpContext;
+
+            if (httpContext is null)
             {
-                return;
+                return Task.FromResult(string.Empty);
             }
 
-            if (_contextAccessor.HttpContext.Request.Cookies.ContainsKey("Jwt"))
+            if (httpContext.Request.Cookies.ContainsKey(TokenName))
             {
-                _contextAccessor.HttpContext.Response.Cookies.Delete("Jwt");
+                httpContext.Response.Cookies.Delete(TokenName);
             }
 
-            var cookieOptions = new CookieOptions
-            {
-                HttpOnly = true,
-            };
+            httpContext.Response.Cookies.Append(TokenName, token, new CookieOptions {HttpOnly = true});
 
-            _contextAccessor.HttpContext.Response.Cookies.Append("Jwt", token, cookieOptions);
+            return Task.CompletedTask;
         }
 
 
