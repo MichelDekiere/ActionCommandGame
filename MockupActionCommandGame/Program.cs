@@ -1,9 +1,11 @@
+using ActionCommandGame.Repository;
 using ActionCommandGame.Sdk;
 using ActionCommandGame.Sdk.Abstractions;
 using ActionCommandGame.Sdk.Extensions;
 using ActionCommandGame.Ui.WebApp.Settings;
 using ActionCommandGame.Ui.WebApp.Stores;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,29 +17,10 @@ builder.Services.AddHttpContextAccessor();
 
 var appSettings = new AppSettings();
 
-//--------------------------------------------------------------------------------
-
 builder.Configuration.GetSection(nameof(appSettings)).Bind(appSettings);
 
-
-
 builder.Services.AddApi(appSettings.ApiBaseUrl);
-/*builder.Services.AddTransient<IdentityApi>();
-builder.Services.AddTransient<>();*/
-
 builder.Services.AddScoped<ITokenStore, TokenStore>();
-
-//--------------------------------------------------------------------------------
-/*builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, config => {
-        config.LoginPath = appSettings.SignInUrl;
-        config.AccessDeniedPath = appSettings.SignInUrl;
-        
-        config.Cookie.HttpOnly = true;
-        config.ExpireTimeSpan = TimeSpan.FromMinutes(5);
-        config.AccessDeniedPath = "/Home/LoginPage";
-        config.SlidingExpiration = true;
-    });*/
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, config =>
@@ -47,10 +30,22 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         config.ExpireTimeSpan = TimeSpan.FromMinutes(5);
     });
 
+
+var app = builder.Build();
 //--------------------------------------------------------------------------------
+using var scope = app.Services.CreateScope();
+//var connectionString = nameof(ActionCommandGame);
+
+//Initialise Db Context
+/*var connectionString = builder.Configuration.GetConnectionString("ActionCommandGameDbContext");
+builder.Services.AddDbContext<ActionCommandGameDbContext>(options =>
+{
+    options.UseSqlServer(connectionString);
+});*/
 
 
-    var app = builder.Build();
+
+//--------------------------------------------------------------------------------
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

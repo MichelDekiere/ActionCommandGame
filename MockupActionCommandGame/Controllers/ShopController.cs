@@ -17,8 +17,7 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
             _tokenStore = tokenStore;
             _itemApi = itemApi;
         }
-
-        /*[Authorize]*/
+        
         public async Task<ActionResult> Shop()
         {
             var result = await _itemApi.FindAsync();
