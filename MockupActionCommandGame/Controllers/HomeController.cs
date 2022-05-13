@@ -3,6 +3,7 @@ using System.Security.Claims;
 using ActionCommandGame.Api.Authentication.Model;
 using ActionCommandGame.Sdk;
 using ActionCommandGame.Sdk.Abstractions;
+using ActionCommandGame.Services.Model.Filters;
 using ActionCommandGame.Ui.WebApp.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -13,12 +14,14 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
     public class HomeController : Controller
     {
         private readonly IIdentityApi _identityApi;
+        private readonly IPlayerApi _playerApi;
         private readonly ITokenStore _tokenStore;
 
-        public HomeController(IIdentityApi identityApi, ITokenStore tokenStore)
+        public HomeController(IIdentityApi identityApi, ITokenStore tokenStore, IPlayerApi playerApi)
         {
             _identityApi = identityApi;
             _tokenStore = tokenStore;
+            _playerApi = playerApi;
         }
         
         public IActionResult LoginPage()
@@ -95,6 +98,8 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
 
         public IActionResult CharacterSelection()
         {
+            /*var result = _playerApi.Find(new PlayerFilter(){ FilterUserPlayers = true});
+            return View(result);*/
             return View();
         }
         

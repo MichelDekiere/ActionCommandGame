@@ -1,4 +1,6 @@
-﻿<head>
+﻿@model IList<ActionCommandGame.Services.Model.Results.PlayerResult>
+
+<head>
     <link rel="stylesheet" href="/css/CharacterSelection.css"/>
 </head>
 
@@ -6,7 +8,13 @@
 
 <table class="table">
     <tbody>
-        <partial name="CharacterSelectionPartial"/>
+    @*@foreach (var player in Model)
+    {
+        <partial name="CharacterSelectionPartial" model=player/>
+    }*@
+
+    <partial name="CharacterSelectionPartial"/>
+    
     </tbody>
 </table>
 
