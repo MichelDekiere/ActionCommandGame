@@ -1,4 +1,5 @@
 ﻿using System.Security.Claims;
+using ActionCommandGame.Model;
 using ActionCommandGame.Sdk;
 using ActionCommandGame.Sdk.Abstractions;
 using ActionCommandGame.Services.Model.Core;
@@ -13,23 +14,34 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
     {
         private readonly ITokenStore _tokenStore;
         private readonly IItemApi _itemApi;
+        private readonly IPlayerApi _playerApi;
+        private int characterId;
+        private Player _player;
 
-        public ShopController(ITokenStore tokenStore, IItemApi itemApi)
+        public ShopController(ITokenStore tokenStore, IItemApi itemApi, IPlayerApi playerApi)
         {
             _tokenStore = tokenStore;
             _itemApi = itemApi;
+            _playerApi = playerApi;
+
         }
         
-        public async Task<ActionResult> Shop()
+        public async Task<ActionResult> Shop(Player player)
         {
             var result = await _itemApi.FindAsync();
+            _player = player;
 
             if (!result.IsSuccess)
             {
-                return RedirectToAction(controllerName: "Game", actionName: "Game");
+                return RedirectToAction(controllerName: "Game", actionName: "Game", routeValues:player.Id);
             }
 
             return View(result.Data);
+        }
+
+        public async Task<ActionResult> Leave()
+        {
+            return RedirectToAction(controllerName:"Game", actionName:"Game", routeValues:_player);
         }
     }
 }

@@ -33,5 +33,13 @@
             var experienceForNextLevel = GetExperienceForNextLevel(experience);
             return experienceForNextLevel - experience;
         }
+
+        public static int GetExperienceEarnedOnLevel(int experience)
+        {
+            var currentLevel = GetLevelFromExperience(experience);
+            
+            return experience - GetExperienceFromLevel(currentLevel);
+            
+        }
     }
 }

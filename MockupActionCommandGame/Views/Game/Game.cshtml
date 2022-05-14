@@ -1,4 +1,6 @@
-﻿@{
+﻿@using ActionCommandGame.Helpers
+@model ActionCommandGame.Services.Model.Results.PlayerResult
+@{
     ViewData["Title"] = "The Castle";
 }
 <head>
@@ -20,7 +22,7 @@
                             <td>Attack</td>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody> 
                         <partial name="InventoryAttackDefensePartial"/>
                         </tbody>
                     </table>
@@ -55,7 +57,7 @@
                 </div>
             </div>
             
-            <a asp-controller="Shop" asp-action="Shop" class="btn btn-shine" id="btnShop">Shop</a>
+            <a asp-controller="Shop" asp-action="Shop" asp-route-id="@Model" class="btn btn-shine" id="btnShop">Shop</a>
             
         </section>
         
@@ -87,20 +89,20 @@
                     <img src="/Images/player.png"/>
                 </div>
                 <div class="progress" id="playerXP">
-                    <div class="progress-bar bg-primary" role="progressbar" style="width: 125px">Player level</div>
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: @PlayerLevelHelper.GetExperienceEarnedOnLevel(Model.Experience)px">@PlayerLevelHelper.GetLevelFromExperience(Model.Experience)</div>
                 </div>
-                <p id="playerWallet">€100</p>
+                <p id="playerWallet">€@Model.Money</p>
 
                 <div class="progress" id="playerFood">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 45px">Food</div>
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: (@Model.RemainingFuel)px">Food</div>
                 </div>
 
                 <div class="progress" id="playerAttack">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 60px">Attack</div>
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: (@Model.RemainingAttack)px">Attack</div>
                 </div>
 
                 <div class="progress" id="playerDefense">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 75px">Defense</div>
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: (@Model.RemainingDefense)px">Defense</div>
                 </div>
             </div>
 
