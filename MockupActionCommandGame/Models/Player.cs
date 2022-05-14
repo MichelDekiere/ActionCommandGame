@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using ActionCommandGame.Services.Model.Results;
 
 namespace ActionCommandGame.Ui.WebApp.Models
 {
@@ -19,5 +20,7 @@ namespace ActionCommandGame.Ui.WebApp.Models
         [EmailAddress]
         public string Email { get; set; }
 
-	}
+        public IList<PlayerResult> Players { set; get; }
+
+    }
 }

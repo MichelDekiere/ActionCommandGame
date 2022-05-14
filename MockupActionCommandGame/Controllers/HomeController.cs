@@ -96,13 +96,14 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
 
         }
 
-        public IActionResult CharacterSelection()
+        public async Task<IActionResult> CharacterSelectionAsync()
         {
-            /*var result = _playerApi.Find(new PlayerFilter(){ FilterUserPlayers = true});
-            return View(result);*/
-            return View();
+            var players = await _playerApi.Find(new PlayerFilter() {FilterUserPlayers = true});
+            return View(players.Data);
+
         }
-        
+
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

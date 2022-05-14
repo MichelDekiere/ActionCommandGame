@@ -22,7 +22,7 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
         
         public async Task<ActionResult> Shop()
         {
-            var result = await _itemApi.FindAttackItemsAsync();
+            var result = await _itemApi.FindAsync();
 
             if (!result.IsSuccess)
             {
