@@ -7,6 +7,6 @@
         <td>@Model.Defense</td>
         <td>@Model.Fuel</td>
         <td>@Model.Price</td>
-        <td><a class="btn bubbly-button">Buy</a></td>
+        <td><a class="btn bubbly-button" asp-controller="Shop" asp-action="Buy" asp-route-itemId="@Model.Id">Buy</a></td>
     </tr>
 </div>

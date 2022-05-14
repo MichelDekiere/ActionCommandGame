@@ -2,6 +2,7 @@ using ActionCommandGame.Repository;
 using ActionCommandGame.Sdk;
 using ActionCommandGame.Sdk.Abstractions;
 using ActionCommandGame.Sdk.Extensions;
+using ActionCommandGame.Services.Model.Results;
 using ActionCommandGame.Ui.WebApp.Settings;
 using ActionCommandGame.Ui.WebApp.Stores;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -21,6 +22,11 @@ builder.Configuration.GetSection(nameof(appSettings)).Bind(appSettings);
 
 builder.Services.AddApi(appSettings.ApiBaseUrl);
 builder.Services.AddScoped<ITokenStore, TokenStore>();
+
+//-------------------------------------------------------------
+builder.Services.AddTransient<PlayerResult>(); // zodat playerResult bijgehouden wordt in de shop, zodat playerId niet meegegeven moet worden
+                                               // in model voor Buy()
+//-------------------------------------------------------------
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, config =>

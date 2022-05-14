@@ -34,8 +34,12 @@ namespace ActionCommandGame.Sdk
             {
                 return new ServiceResult<GameResult>();
             }
-
-            Console.WriteLine(result.ToString());
+            //----------------------------------------------------------------
+            foreach (var message in result.Messages)
+            {
+                Console.WriteLine(message.ToString());
+            }
+            //----------------------------------------------------------------
             return result;
         }
 
@@ -57,6 +61,7 @@ namespace ActionCommandGame.Sdk
                 return new ServiceResult<BuyResult>();
             }
 
+            Console.WriteLine(result.IsSuccess);
             return result;
         }
     }

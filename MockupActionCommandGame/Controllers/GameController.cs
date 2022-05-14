@@ -25,10 +25,16 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
             return View(player);
         }
 
-        public async Task<IActionResult> Explore()
+        /*public async Task<IActionResult> Game(GameResult gameResult)
         {
-            //_gameApi.PerformActionAsync()
-            return null;
+            return View(gameResult.Player);
+        }*/
+
+        public async Task<IActionResult> Explore(int playerId)
+        {
+            var gameResult = _gameApi.PerformActionAsync(playerId);
+
+            return RedirectToAction("Game", gameResult);
         }
     }
 }
