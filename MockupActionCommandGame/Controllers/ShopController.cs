@@ -25,7 +25,7 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
             _itemApi = itemApi;
             _playerApi = playerApi;
             _gameApi = gameApi;
-            //_player = pr;
+            _player = pr;
         }
         
         public async Task<ActionResult> Shop(PlayerResult player)
@@ -43,7 +43,7 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
 
         public async Task<ActionResult> Buy(int itemId)
         {
-            var buyResult = _gameApi.BuyAsync(53, itemId);
+            var buyResult = _gameApi.BuyAsync(_player.Id, itemId);
             return RedirectToAction(controllerName: "Shop", actionName: "Shop", routeValues: _player);
         }
 
