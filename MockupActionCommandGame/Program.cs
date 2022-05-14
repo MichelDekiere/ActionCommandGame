@@ -32,20 +32,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 
 var app = builder.Build();
-//--------------------------------------------------------------------------------
-using var scope = app.Services.CreateScope();
-//var connectionString = nameof(ActionCommandGame);
 
-//Initialise Db Context
-/*var connectionString = builder.Configuration.GetConnectionString("ActionCommandGameDbContext");
-builder.Services.AddDbContext<ActionCommandGameDbContext>(options =>
-{
-    options.UseSqlServer(connectionString);
-});*/
-
-
-
-//--------------------------------------------------------------------------------
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

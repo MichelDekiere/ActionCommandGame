@@ -37,5 +37,26 @@ namespace ActionCommandGame.Sdk
 
             return result;
         }
+
+        public async Task<ServiceResult<IList<ItemResult>>> FindAttackItemsAsync()
+        {
+            var httpClient = _httpClientFactory.CreateClient("ActionCommandGame");
+            var token = await _tokenStore.GetTokenAsync();
+            httpClient.AddAuthorization(token);
+            var route = "attackItems";
+
+            var httpResponse = await httpClient.GetAsync(route);
+
+            httpResponse.EnsureSuccessStatusCode();
+
+            var result = await httpResponse.Content.ReadFromJsonAsync<ServiceResult<IList<ItemResult>>>();
+
+            if (result is null)
+            {
+                return new ServiceResult<IList<ItemResult>>();
+            }
+
+            return result;
+        }
     }
 }

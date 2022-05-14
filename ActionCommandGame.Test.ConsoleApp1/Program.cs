@@ -51,7 +51,7 @@ var email = Console.ReadLine();
 Console.Write("Password: ");
 var passWord = Console.ReadLine();*/
 
-var signInRequest = new UserSignInRequest()
+/*var signInRequest = new UserSignInRequest()
 {
     Email = "bavo.ketels@vives.be",
     Password = "Test123$"
@@ -74,4 +74,4 @@ if (!result.IsSuccess)
 foreach (var item in result.Data)
 {
     Console.WriteLine(item.Name);
-}
+}*/

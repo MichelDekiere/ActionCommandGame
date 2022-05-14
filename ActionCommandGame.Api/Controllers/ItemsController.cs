@@ -19,5 +19,12 @@ namespace ActionCommandGame.Api.Controllers
             var result = await _itemService.FindAsync(User.GetId());
             return Ok(result);
         }
+
+        [HttpGet("attackItems")]
+        public async Task<IActionResult> FindAttackItems()
+        {
+            var result = await _itemService.FindAttackItemsAsync(User.GetId());
+            return Ok(result);
+        }
     }
 }

@@ -16,6 +16,11 @@ namespace ActionCommandGame.Repository
         public DbSet<PositiveGameEvent> PositiveGameEvents { get; set; }
         public DbSet<NegativeGameEvent> NegativeGameEvents { get; set; }
         public DbSet<Item> Items { get; set; }
+
+        public DbSet<Item> AttackItems { get; set; }
+        public DbSet<Item> DefenseItems { get; set; }
+        public DbSet<Item> FuelItems { get; set; }
+
         public DbSet<Player> Players { get; set; }
         public DbSet<PlayerItem> PlayerItems { get; set; }
 
@@ -150,21 +155,39 @@ namespace ActionCommandGame.Repository
 
         private void GenerateAttackItems()
         {
-            Items.Add(new Item { Name = "Basic Pickaxe", Attack = 50, Price = 50 });
-            Items.Add(new Item { Name = "Enhanced Pick", Attack = 300, Price = 300 });
-            Items.Add(new Item { Name = "Turbo Pick", Attack = 500, Price = 500 });
-            Items.Add(new Item { Name = "Mithril Warpick", Attack = 5000, Price = 15000 });
-            Items.Add(new Item { Name = "Thor's Hammer", Attack = 50, Price = 1000000 });
+            var basicPick = new Item { Name = "Basic Pickaxe", Attack = 50, Price = 50 };
+            var enhancedPick = new Item { Name = "Enhanced Pick", Attack = 300, Price = 300 };
+            var turboPick = new Item { Name = "Turbo Pick", Attack = 500, Price = 500 };
+            var mithrilWarpick = new Item { Name = "Mithril Warpick", Attack = 5000, Price = 15000 };
+            var thorHammer = new Item { Name = "Thor's Hammer", Attack = 50, Price = 1000000 };
+
+            Items.Add(basicPick);
+            Items.Add(enhancedPick);
+            Items.Add(turboPick);
+            Items.Add(mithrilWarpick);
+            Items.Add(thorHammer);
+
+            AttackItems.Add(basicPick);
+            AttackItems.Add(enhancedPick);
+            AttackItems.Add(turboPick);
+            AttackItems.Add(mithrilWarpick);
+            AttackItems.Add(thorHammer);
+
+
         }
 
         private void GenerateDefenseItems()
         {
-            Items.Add(new Item { Name = "Torn Clothes", Defense = 20, Price = 20 });
+            var tornClothes = new Item { Name = "Torn Clothes", Defense = 20, Price = 20 };
+
+            Items.Add(tornClothes);
             Items.Add(new Item { Name = "Hardened Leather Gear", Defense = 150, Price = 200 });
             Items.Add(new Item { Name = "Iron plated Armor", Defense = 500, Price = 1000 });
             Items.Add(new Item { Name = "Rock Shield", Defense = 2000, Price = 10000 });
             Items.Add(new Item { Name = "Emerald Shield", Defense = 2000, Price = 10000 });
             Items.Add(new Item { Name = "Diamond Shield", Defense = 20000, Price = 10000 });
+
+            DefenseItems.Add(tornClothes);
         }
 
         private void GenerateFoodItems()

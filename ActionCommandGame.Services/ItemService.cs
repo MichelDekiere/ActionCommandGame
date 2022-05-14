@@ -37,5 +37,14 @@ namespace ActionCommandGame.Services
 
             return new ServiceResult<IList<ItemResult>>(items);
         }
+
+        public async Task<ServiceResult<IList<ItemResult>>> FindAttackItemsAsync(string authenticatedUserId)
+        {
+            var attackItems = await _dbContext.AttackItems
+                .ProjectToResult()
+                .ToListAsync();
+
+            return new ServiceResult<IList<ItemResult>>(attackItems);
+        }
     }
 }
