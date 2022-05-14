@@ -1,4 +1,6 @@
-﻿using ActionCommandGame.Sdk.Abstractions;
+﻿using ActionCommandGame.Model;
+using ActionCommandGame.Sdk.Abstractions;
+using ActionCommandGame.Services.Model.Results;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ActionCommandGame.Ui.WebApp.Controllers
@@ -9,6 +11,8 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
         private readonly IPlayerApi _playerApi;
         private readonly ITokenStore _tokenStore;
 
+        
+
         public GameController(IGameApi gameApi, IPlayerApi playerApi, ITokenStore tokenStore)
         {
             _gameApi = gameApi;
@@ -16,10 +20,15 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
             _playerApi = playerApi;
         }
 
-        public async Task<IActionResult> Game(int id)
+        public async Task<IActionResult> Game(PlayerResult player)
         {
-            var player = await _playerApi.GetAsync(id);
-            return View(player.Data);
+            return View(player);
+        }
+
+        public async Task<IActionResult> Explore()
+        {
+            //_gameApi.PerformActionAsync()
+            return null;
         }
     }
 }

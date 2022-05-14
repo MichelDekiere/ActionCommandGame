@@ -35,6 +35,7 @@ namespace ActionCommandGame.Sdk
                 return new ServiceResult<GameResult>();
             }
 
+            Console.WriteLine(result.ToString());
             return result;
         }
 

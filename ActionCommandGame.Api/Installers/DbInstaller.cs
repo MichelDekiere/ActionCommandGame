@@ -15,10 +15,10 @@ namespace ActionCommandGame.Api.Installers
 
             services.AddDbContext<ActionCommandGameDbContext>(options =>
             {
-                /*options.UseLoggerFactory(ConsoleLoggerFactory);
+                options.UseLoggerFactory(ConsoleLoggerFactory);
                 options.EnableSensitiveDataLogging();
-                options.UseInMemoryDatabase("InMemoryDb");*/
-                options.UseSqlServer(connectionString);
+                options.UseInMemoryDatabase("InMemoryDb");
+                //options.UseSqlServer(connectionString);
             });
         }
     }
