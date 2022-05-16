@@ -23,6 +23,9 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
         public async Task<IActionResult> Game(int id)
         {
             var player = await _playerApi.GetAsync(id);
+
+            ViewData["playerId"] = id;
+
             return View(player.Data);
         }
 

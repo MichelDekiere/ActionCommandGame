@@ -28,11 +28,13 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
             _player = pr;
         }
         
-        public async Task<ActionResult> Shop(PlayerResult player)
+        public async Task<ActionResult> Shop(int id)
         {
             var result = await _itemApi.FindAsync();
-            _player = player;
+            _player = _playerApi.GetAsync(id).Result.Data;
 
+            ViewData["playerId"] = id;
+            
             if (!result.IsSuccess)
             {
                 return RedirectToAction(controllerName: "Game", actionName: "Game", routeValues:_player.Id);
@@ -47,9 +49,5 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
             return RedirectToAction(controllerName: "Shop", actionName: "Shop", routeValues: _player.Id);
         }
 
-        public async Task<ActionResult> Leave()
-        {
-            return RedirectToAction(controllerName:"Game", actionName:"Game", routeValues:_player);
-        }
     }
 }
