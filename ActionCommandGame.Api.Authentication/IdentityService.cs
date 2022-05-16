@@ -31,7 +31,7 @@ namespace ActionCommandGame.Api.Authentication
 					Errors = new List<string> { "Registration failed" }
 				};
 			}
-
+			
 			user = new IdentityUser
 			{
 				Email = request.Email,
@@ -72,6 +72,20 @@ namespace ActionCommandGame.Api.Authentication
 
 			return GenerateAuthenticationResult(user);
 		}
+
+        /*public async Task<IdentityUser?> UpdateEmailAsync(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+
+            if (user == null)
+            {
+                Console.WriteLine("User not found");
+            }
+
+            await _userManager.UpdateNormalizedEmailAsync(user);
+
+            return user;
+        }*/
 
 		private AuthenticationResult GenerateAuthenticationResult(IdentityUser user)
 		{

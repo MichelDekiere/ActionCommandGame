@@ -52,5 +52,17 @@ namespace ActionCommandGame.Sdk
 
             return result;
         }
+
+        /*public async Task<AuthenticationResult> UpdateAsync(UserUpdateRequest request)
+        {
+            var httpClient = _httpClientFactory.CreateClient("ActionCommandGame");
+            var route = $"/identity/edit/{request.UserId}";
+
+            var httpResponse = await httpClient.PutAsJsonAsync(route, request);
+            httpResponse.EnsureSuccessStatusCode();
+
+            var result = await httpResponse.Content.ReadFromJsonAsync<AuthenticationResult>();
+            return result;
+        }*/
     }
 }

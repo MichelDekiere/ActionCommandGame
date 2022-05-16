@@ -27,5 +27,12 @@ namespace ActionCommandGame.Api.Controllers
             var authenticationResult = await _identityService.RegisterAsync(request);
             return Ok(authenticationResult);
         }
+
+        /*[HttpPut("identity/edit/{id}")]
+        public IActionResult Update(string id)
+        {
+            var dbUser = _identityService.UpdateEmailAsync(id);
+            return Ok(dbUser);
+        }*/
     }
 }

@@ -7,6 +7,7 @@ using ActionCommandGame.Services.Model.Filters;
 using ActionCommandGame.Ui.WebApp.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ActionCommandGame.Ui.WebApp.Controllers
@@ -17,11 +18,14 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
         private readonly IPlayerApi _playerApi;
         private readonly ITokenStore _tokenStore;
 
-        public HomeController(IIdentityApi identityApi, ITokenStore tokenStore, IPlayerApi playerApi)
+        //private readonly UserManager<IdentityUser> _userManager;
+
+        public HomeController(IIdentityApi identityApi, ITokenStore tokenStore, IPlayerApi playerApi /*, UserManager<IdentityUser> userManager*/)
         {
             _identityApi = identityApi;
             _tokenStore = tokenStore;
             _playerApi = playerApi;
+            //_userManager = userManager;
         }
         
         public IActionResult LoginPage()
@@ -95,6 +99,13 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
             }
 
         }
+       /* public async Task<IActionResult> UpdateEmailAsync(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            //await _userManager.UpdateNormalizedEmailAsync();
+
+            return null;
+        }*/
 
         public async Task<IActionResult> CharacterSelectionAsync()
         {
