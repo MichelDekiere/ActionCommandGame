@@ -1,7 +1,9 @@
 ﻿@using ActionCommandGame.Helpers
-@model ActionCommandGame.Services.Model.Results.PlayerResult
+@model ActionCommandGame.Ui.WebApp.Models.PlayerAction
 @{
     ViewData["Title"] = "The Castle";
+    var player = Model.Player;
+    var gameResult = Model.GameResult;
 }
 <head>
     <link rel="stylesheet" href="/css/Game.css"/>
@@ -64,7 +66,34 @@
         @*MAIN*@
         <section id="gameMain" class="justify-content-center col-7">
             <div id="page">
-                <p>You awake... and have no idea where you are or how you got there. You look around and appear 
+                @if(gameResult is not null && @Model.Messages is null)
+                {
+                    @if (gameResult.NegativeGameEvent is not null)
+                    {
+                        <h3 class="redText">Negative event happened</h3>
+                        <h4 class="redText">@gameResult.NegativeGameEvent.Description</h4>
+                        <p class="redText">you have lost @gameResult.NegativeGameEvent.DefenseLoss defense </p>
+                    }
+                    @if (gameResult.PositiveGameEvent is not null)
+                    {
+                        <h3 class="redText">Positive event happened</h3>
+                        <h4 class="redText">@gameResult.PositiveGameEvent.Description</h4>
+                        <p class="redText">you have gained @gameResult.PositiveGameEvent.Money Cash,@gameResult.PositiveGameEvent.Experience </p>
+                    }
+
+                    @if (gameResult.NegativeGameEventMessages is not null)
+                    {
+                        @foreach (var message in gameResult.NegativeGameEventMessages)
+                        {
+
+                            <p class="redText">@message.Message</p>
+                        }
+                    }
+                    
+                }
+                
+                
+                @*<p>You awake... and have no idea where you are or how you got there. You look around and appear 
                     to be in an abandoned castle or fortress of some sort. A cat passes by your leg and you decide
                     to follow it. It leads you to some sort of shop, with a mysterious merchant behind the counter.
                     <br/>You ask the merchant where you are and how you got there, but he doesn't answer. In fact he doesn't talk at all.
@@ -78,7 +107,7 @@
                     and won't stick around to find out.
                     <br/>
                     <span>We'll then, let's look for a way out of here!</span>
-                </p>
+                </p>*@
             </div>
         </section>
         
@@ -89,20 +118,20 @@
                     <img src="/Images/player.png"/>
                 </div>
                 <div class="progress" id="playerXP">
-                    <div class="progress-bar bg-primary" role="progressbar" style="width: @PlayerLevelHelper.GetExperienceEarnedOnLevel(Model.Experience)px">@PlayerLevelHelper.GetLevelFromExperience(Model.Experience)</div>
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: @PlayerLevelHelper.GetExperienceEarnedOnLevel(player.Experience)px">@PlayerLevelHelper.GetLevelFromExperience(player.Experience)</div>
                 </div>
-                <p id="playerWallet">€@Model.Money</p>
+                <p id="playerWallet">€@player.Money</p>
 
                 <div class="progress" id="playerFood">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: (@Model.RemainingFuel)px">Food</div>
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: (@Model.Player.RemainingFuel)px">Food</div>
                 </div>
 
                 <div class="progress" id="playerAttack">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: (@Model.RemainingAttack)px">Attack</div>
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: (@Model.Player.RemainingAttack)px">Attack</div>
                 </div>
 
                 <div class="progress" id="playerDefense">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: (@Model.RemainingDefense)px">Defense</div>
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: (@Model.Player.RemainingDefense)px">Defense</div>
                 </div>
             </div>
 
@@ -115,7 +144,7 @@
     </div>
     <div class="row justify-content-center" id="buttonRow">
 
-          <a class="btn col-4 btn-shine" id="btnExplore" asp-controller="Game" asp-action="Explore" asp-route-playerId="@Model.Id">Explore</a>
+          <a class="btn col-4 btn-shine" id="btnExplore" asp-controller="Game" asp-action="Explore" asp-route-playerId="@player.Id">Explore</a>
 
     </div>
 

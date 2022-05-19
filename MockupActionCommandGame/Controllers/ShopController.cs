@@ -37,15 +37,16 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
             
             if (!result.IsSuccess)
             {
-                return RedirectToAction(controllerName: "Game", actionName: "Game", routeValues:_player.Id);
+                return RedirectToAction(controllerName: "Game", actionName: "Game", routeValues:id);
             }
 
             return View(result.Data);
         }
 
-        public async Task<ActionResult> Buy(int itemId)
+        public async Task<ActionResult> Buy(int playerId, int itemId)
         {
-            var buyResult = _gameApi.BuyAsync(_player.Id, itemId);
+            var buyResult = await _gameApi.BuyAsync(playerId, itemId);
+
             return RedirectToAction(controllerName: "Shop", actionName: "Shop", routeValues: _player.Id);
         }
 
