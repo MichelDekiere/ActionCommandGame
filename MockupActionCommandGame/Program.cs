@@ -24,10 +24,6 @@ builder.Services.AddApi(appSettings.ApiBaseUrl);
 builder.Services.AddScoped<ITokenStore, TokenStore>();
 builder.Services.AddScoped<IPlayerStore, PlayerStore>();
 
-//-------------------------------------------------------------
-builder.Services.AddTransient<PlayerResult>(); // zodat playerResult bijgehouden wordt in de shop, zodat playerId niet meegegeven moet worden
-                                               // in model voor Buy()
-//-------------------------------------------------------------
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, config =>

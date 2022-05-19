@@ -16,7 +16,18 @@
             <div id="inventory">
                 <div class="justify-content-center">
                     <h1>Inventory</h1>
-                    <h2>Attack</h2>
+                    <table>
+                        <thead>
+                        <tr>
+                            <td>Name</td>
+                            @*<td>Attack</td>*@
+                        </tr>
+                        </thead>
+                        <tbody> 
+                        <partial name="InventoryItemPartial"/>
+                        </tbody>
+                    </table>
+                    @*<h2>Attack</h2>
                     <table>
                         <thead>
                         <tr>
@@ -54,7 +65,7 @@
                         <tbody>
                         <partial name="InventoryFuelPartial"/>
                         </tbody>
-                    </table>
+                    </table>*@
 
                 </div>
             </div>
@@ -70,15 +81,15 @@
                 {
                     @if (gameResult.NegativeGameEvent is not null)
                     {
-                        <h3 class="redText">Negative event happened</h3>
-                        <h4 class="redText">@gameResult.NegativeGameEvent.Description</h4>
-                        <p class="redText">you have lost @gameResult.NegativeGameEvent.DefenseLoss defense </p>
+                        <h3>Negative event happened</h3>
+                        <h4>@gameResult.NegativeGameEvent.Description</h4>
+                        <p>you have lost @gameResult.NegativeGameEvent.DefenseLoss defense </p>
                     }
                     @if (gameResult.PositiveGameEvent is not null)
                     {
-                        <h3 class="redText">Positive event happened</h3>
-                        <h4 class="redText">@gameResult.PositiveGameEvent.Description</h4>
-                        <p class="redText">you have gained @gameResult.PositiveGameEvent.Money Cash,@gameResult.PositiveGameEvent.Experience </p>
+                        <h3>Positive event happened</h3>
+                        <h4>@gameResult.PositiveGameEvent.Description</h4>
+                        <p>you have gained @gameResult.PositiveGameEvent.Money Cash,@gameResult.PositiveGameEvent.Experience </p>
                     }
 
                     @if (gameResult.NegativeGameEventMessages is not null)
@@ -86,7 +97,7 @@
                         @foreach (var message in gameResult.NegativeGameEventMessages)
                         {
 
-                            <p class="redText">@message.Message</p>
+                            <p>@message.Message</p>
                         }
                     }
                     

@@ -18,16 +18,14 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
         private readonly IPlayerApi _playerApi;
         private readonly IGameApi _gameApi;
 
-        private PlayerResult _player;
-
-        public ShopController(ITokenStore tokenStore, IItemApi itemApi, IPlayerApi playerApi, IGameApi gameApi,PlayerResult pr, IPlayerStore playerStore)
+        public ShopController(ITokenStore tokenStore, IItemApi itemApi, IPlayerApi playerApi, IGameApi gameApi, IPlayerStore playerStore)
         {
             _tokenStore = tokenStore;
             _itemApi = itemApi;
             _playerApi = playerApi;
             _gameApi = gameApi;
-            _player = pr;
             _playerStore = playerStore;
+
         }
         
         public async Task<ActionResult> Shop()
@@ -42,16 +40,17 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
                 return RedirectToAction(controllerName: "Game", actionName: "Game");
             }
 
+            ViewData["Money"] = player.Result.Data.Money;
+
             return View(result.Data);
         }
 
-        public async Task<ActionResult> Buy(int playerId, int itemId)
+        public async Task<ActionResult> Buy(int itemId)
         {
-            var buyResult = await _gameApi.BuyAsync(playerId, itemId);
-            if (buyResult.IsSuccess)
-            {
-                RedirectToAction(controllerName: "Game", actionName: "Game");
-            }
+            var playerId = await _playerStore.GetTokenAsync();
+
+            await _gameApi.BuyAsync(playerId, itemId);
+            
             return RedirectToAction("Shop");
         }
 
