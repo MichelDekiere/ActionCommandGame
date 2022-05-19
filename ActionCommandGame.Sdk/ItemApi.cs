@@ -38,7 +38,7 @@ namespace ActionCommandGame.Sdk
             return result;
         }
 
-        public async Task<ServiceResult<IList<ItemResult>>> FindAttackItemsAsync()
+        /*public async Task<ServiceResult<IList<ItemResult>>> FindAttackItemsAsync()
         {
             var httpClient = _httpClientFactory.CreateClient("ActionCommandGame");
             var token = await _tokenStore.GetTokenAsync();
@@ -57,6 +57,6 @@ namespace ActionCommandGame.Sdk
             }
 
             return result;
-        }
+        }*/
     }
 }

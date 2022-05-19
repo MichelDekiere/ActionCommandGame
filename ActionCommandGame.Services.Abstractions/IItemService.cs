@@ -11,6 +11,6 @@ namespace ActionCommandGame.Services.Abstractions
         Task<ServiceResult<ItemResult>> GetAsync(int id, string authenticatedUserId);
         Task<ServiceResult<IList<ItemResult>>> FindAsync(string authenticatedUserId);
 
-        Task<ServiceResult<IList<ItemResult>>> FindAttackItemsAsync(string authenticatedUserId);
+        /*Task<ServiceResult<IList<ItemResult>>> FindAttackItemsAsync(string authenticatedUserId);*/
     }
 }

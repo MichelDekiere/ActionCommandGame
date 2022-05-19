@@ -7,6 +7,6 @@ namespace ActionCommandGame.Sdk.Abstractions
     {
         Task<ServiceResult<IList<ItemResult>>> FindAsync();
 
-        Task<ServiceResult<IList<ItemResult>>> FindAttackItemsAsync();
+        /*Task<ServiceResult<IList<ItemResult>>> FindAttackItemsAsync();*/
     }
 }

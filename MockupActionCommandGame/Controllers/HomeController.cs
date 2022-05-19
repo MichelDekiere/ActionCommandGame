@@ -109,7 +109,7 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
 
         public async Task<IActionResult> CharacterSelectionAsync()
         {
-            var players = await _playerApi.Find(new PlayerFilter() {FilterUserPlayers = true});
+            var players = await _playerApi.Find(new PlayerFilter() { FilterUserPlayers = true });
             
             return View(players.Data);
         }
