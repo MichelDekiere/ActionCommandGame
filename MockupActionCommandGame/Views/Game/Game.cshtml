@@ -59,14 +59,14 @@
                 </div>
             </div>
             
-            <a asp-controller="Shop" asp-action="Shop" asp-route-id="@ViewData["playerId"]" class="btn btn-shine" id="btnShop">Shop</a>
+            <a asp-controller="Shop" asp-action="Shop" class="btn btn-shine" id="btnShop">Shop</a>
             
         </section>
         
         @*MAIN*@
         <section id="gameMain" class="justify-content-center col-7">
             <div id="page">
-                @if(gameResult is not null && @Model.Messages is null)
+                @if(gameResult is not null && Model.Messages is null)
                 {
                     @if (gameResult.NegativeGameEvent is not null)
                     {

@@ -13,31 +13,33 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
     public class ShopController : Controller
     {
         private readonly ITokenStore _tokenStore;
+        private readonly IPlayerStore _playerStore;
         private readonly IItemApi _itemApi;
         private readonly IPlayerApi _playerApi;
         private readonly IGameApi _gameApi;
 
         private PlayerResult _player;
 
-        public ShopController(ITokenStore tokenStore, IItemApi itemApi, IPlayerApi playerApi, IGameApi gameApi,PlayerResult pr)
+        public ShopController(ITokenStore tokenStore, IItemApi itemApi, IPlayerApi playerApi, IGameApi gameApi,PlayerResult pr, IPlayerStore playerStore)
         {
             _tokenStore = tokenStore;
             _itemApi = itemApi;
             _playerApi = playerApi;
             _gameApi = gameApi;
             _player = pr;
+            _playerStore = playerStore;
         }
         
-        public async Task<ActionResult> Shop(int id)
+        public async Task<ActionResult> Shop()
         {
-            var result = await _itemApi.FindAsync();
-            _player = _playerApi.GetAsync(id).Result.Data;
+            var playerId = await _playerStore.GetTokenAsync();
+            var player = _playerApi.GetAsync(playerId);
 
-            ViewData["playerId"] = id;
+            var result = await _itemApi.FindAsync();
             
             if (!result.IsSuccess)
             {
-                return RedirectToAction(controllerName: "Game", actionName: "Game", routeValues:id);
+                return RedirectToAction(controllerName: "Game", actionName: "Game");
             }
 
             return View(result.Data);
@@ -46,8 +48,11 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
         public async Task<ActionResult> Buy(int playerId, int itemId)
         {
             var buyResult = await _gameApi.BuyAsync(playerId, itemId);
-
-            return RedirectToAction(controllerName: "Shop", actionName: "Shop", routeValues: _player.Id);
+            if (buyResult.IsSuccess)
+            {
+                RedirectToAction(controllerName: "Game", actionName: "Game");
+            }
+            return RedirectToAction("Shop");
         }
 
     }
