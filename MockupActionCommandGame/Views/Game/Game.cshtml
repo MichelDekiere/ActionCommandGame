@@ -78,19 +78,18 @@
         @*MAIN*@
         <section id="gameMain" class="justify-content-center col-7">
             <div id="page">
-                @if(gameResult is not null && Model.Messages is null)
+                
+                @if (gameResult is not null && Model.Messages is not null)
                 {
                     @if (gameResult.NegativeGameEvent is not null)
                     {
-                        <h3>Negative event happened</h3>
-                        <h4>@gameResult.NegativeGameEvent.Description</h4>
-                        <p>you have lost @gameResult.NegativeGameEvent.DefenseLoss defense </p>
+                        <h3>@gameResult.NegativeGameEvent.Description</h3>
+                        <h2>you have lost @gameResult.NegativeGameEvent.DefenseLoss defense </h2>
                     }
                     @if (gameResult.PositiveGameEvent is not null)
                     {
-                        <h3>Positive event happened</h3>
-                        <h4>@gameResult.PositiveGameEvent.Description</h4>
-                        <p>you have gained @gameResult.PositiveGameEvent.Money Cash,@gameResult.PositiveGameEvent.Experience </p>
+                        <h3>@gameResult.PositiveGameEvent.Description</h3>
+                        <h2>you have gained @gameResult.PositiveGameEvent.Money Cash,@gameResult.PositiveGameEvent.Experience </h2>
                     }
 
                     @if (gameResult.NegativeGameEventMessages is not null)
@@ -101,25 +100,27 @@
                             <p>@message.Message</p>
                         }
                     }
-                    
+
                 }
-                
-                
-                @*<p>You awake... and have no idea where you are or how you got there. You look around and appear 
-                    to be in an abandoned castle or fortress of some sort. A cat passes by your leg and you decide
-                    to follow it. It leads you to some sort of shop, with a mysterious merchant behind the counter.
-                    <br/>You ask the merchant where you are and how you got there, but he doesn't answer. In fact he doesn't talk at all.
-                    The cat points your attention to a sign that says "Welcome Stranger! Anything you need?".
-                    <br/>
-                    <br/>
-                    &lt;You can now buy items in the store, see button 'SHOP' to the left, below 'Inventory'&gt;
-                    <br/>
-                    <br/>
-                    You hear an unnerving sound coming from all the way down the dark hallway. You have no clue what it could have been, 
-                    and won't stick around to find out.
-                    <br/>
-                    <span>We'll then, let's look for a way out of here!</span>
-                </p>*@
+                else
+                {
+                    <p>You awake... and have no idea where you are or how you got there. You look around and appear 
+                        to be in an abandoned castle or fortress of some sort. A cat passes by your leg and you decide
+                        to follow it. It leads you to some sort of shop, with a mysterious merchant behind the counter.
+                        <br/>You ask the merchant where you are and how you got there, but he doesn't answer. In fact he doesn't talk at all.
+                        The cat points your attention to a sign that says "Welcome Stranger! Anything you need?".
+                        <br/>
+                        <br/>
+                        &lt;You can now buy items in the store, see button 'SHOP' to the left, below 'Inventory'&gt;
+                        <br/>
+                        <br/>
+                        You hear an unnerving sound coming from all the way down the dark hallway. You have no clue what it could have been, 
+                        and won't stick around to find out.
+                        <br/>
+                        <span>We'll then, let's look for a way out of here!</span>
+                    </p>
+                }
+
             </div>
         </section>
         
