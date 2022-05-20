@@ -7,6 +7,10 @@
 h1 {
     color: red;
     margin-bottom: 50px;
+    margin-top: 50px;
+    font-family: 'Creepster', cursive;
+    font-size: 3.5em;
+    text-align: center;
 }
 
 td {
@@ -17,6 +21,7 @@ td {
 
 td a {
     display: block;
+    
 }
 
 td:hover {
@@ -28,6 +33,10 @@ a {
     text-decoration: none;
     color: white;
 }
+
+    a:hover {
+        color: red;
+    }
 
 table {
     border-top: solid 0.5px white;

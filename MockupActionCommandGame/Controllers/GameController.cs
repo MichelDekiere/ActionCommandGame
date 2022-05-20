@@ -49,14 +49,8 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
             return View(result);
         }
 
-        /*public async Task<IActionResult> Game(PlayerResult player)
-        {
-            return View(player);
-        }*/
 
-
-
-        public async Task<ActionResult> Explore(/*int playerId*/)
+        public async Task<ActionResult> Explore()
         {
             var playerId = await _playerStore.GetTokenAsync();
 
