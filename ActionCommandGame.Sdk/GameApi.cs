@@ -55,11 +55,7 @@ namespace ActionCommandGame.Sdk
             {
                 return new ServiceResult<BuyResult>();
             }
-
-            //------------------------------------------------------------
-            Console.WriteLine(result.IsSuccess);
-            //------------------------------------------------------------
-
+            
             return result;
         }
     }

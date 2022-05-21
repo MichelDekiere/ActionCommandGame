@@ -85,11 +85,13 @@
                     {
                         <h3>@gameResult.NegativeGameEvent.Description</h3>
                         <h2>you have lost @gameResult.NegativeGameEvent.DefenseLoss defense </h2>
+                       
                     }
                     @if (gameResult.PositiveGameEvent is not null)
                     {
                         <h3>@gameResult.PositiveGameEvent.Description</h3>
                         <h2>you have gained @gameResult.PositiveGameEvent.Money Cash,@gameResult.PositiveGameEvent.Experience </h2>
+                        <h1 style="background-color: red">@gameResult.PositiveGameEvent.Id</h1>
                     }
 
                     @if (gameResult.NegativeGameEventMessages is not null)

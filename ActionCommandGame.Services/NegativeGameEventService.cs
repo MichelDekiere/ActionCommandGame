@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ActionCommandGame.Model;
 using ActionCommandGame.Repository;
@@ -30,7 +31,9 @@ namespace ActionCommandGame.Services
 
         public async Task<ServiceResult<IList<NegativeGameEventResult>>> Find(string authenticatedUserId)
         {
-            var negativeGameEvents = await _database.NegativeGameEvents
+            var query = _database.NegativeGameEvents.AsQueryable();
+            Console.WriteLine(query.Last().Id);
+            var negativeGameEvents = await query
                 .ProjectToResult()
                 .ToListAsync();
 
