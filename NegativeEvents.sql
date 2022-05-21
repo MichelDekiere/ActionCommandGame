@@ -32,7 +32,13 @@ INSERT INTO [dbo].[NegativeGameEvent]
 		   wake up in another room? You have no idea where you are or how you got there. Did someone move you here? You start to feel watched and paranoid.',
 		   2,
 		   50
-		   )
+		   ),
+		   ('Skeleton'
+           ,'As you explore the hallways you suddenly get jumped by what appears to be a walking skeleton, is that even real?'
+           ,'It tries to cut you with it''s sword, but your heavy leather jacket absorbs the force of it''s dull blades'' blow. You push it away and with the extra weight your gear provides it falls down to the ground and the bones scatter everywhere, was the even real?'
+           ,'It just cut you with it''s sword, that was definitely real, you run away as fast as you can. You look behind you and it''s gone. How is this even possible?'
+           ,5
+           ,50)
 
 GO
 

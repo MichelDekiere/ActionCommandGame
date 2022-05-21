@@ -106,7 +106,7 @@ namespace ActionCommandGame.Services
                     }};
             }
 
-            //var negativeGameEvent = await _negativeGameEventService.GetRandomNegativeGameEvent(authenticatedUserId);
+            var negativeGameEvent = await _negativeGameEventService.GetRandomNegativeGameEvent(authenticatedUserId);
 
             var oldLevel = player.GetLevel();
 
@@ -134,7 +134,7 @@ namespace ActionCommandGame.Services
 
             var defenseMessages = new List<ServiceMessage>();
             var negativeGameEventMessages = new List<ServiceMessage>();
-            /*if (negativeGameEvent.Data is not null)
+            if (negativeGameEvent.Data is not null)
             {
                 //Check defense consumption
                 if (player.CurrentDefensePlayerItem != null)
@@ -150,7 +150,7 @@ namespace ActionCommandGame.Services
                     defenseMessages.AddRange(ConsumeFuel(player, authenticatedUserId, negativeGameEvent.Data.DefenseLoss));
                     defenseMessages.AddRange(ConsumeAttack(player, authenticatedUserId, negativeGameEvent.Data.DefenseLoss));
                 }
-            }*/
+            }
 
             var warningMessages = GetWarningMessages(player);
 
@@ -162,7 +162,9 @@ namespace ActionCommandGame.Services
             {
                 Player = playerResult.Data,
                 PositiveGameEvent = positiveGameEvent.Data,
-                //NegativeGameEvent = negativeGameEvent.Data,
+
+                NegativeGameEvent = negativeGameEvent.Data,
+
                 NegativeGameEventMessages = negativeGameEventMessages
             };
 

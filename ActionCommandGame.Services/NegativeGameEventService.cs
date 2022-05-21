@@ -21,7 +21,7 @@ namespace ActionCommandGame.Services
         {
             _database = database;
         }
-        
+
         public async Task<ServiceResult<NegativeGameEventResult>> GetRandomNegativeGameEvent(string authenticatedUserId)
         {
             var gameEvents = await Find(authenticatedUserId);
@@ -32,12 +32,13 @@ namespace ActionCommandGame.Services
         public async Task<ServiceResult<IList<NegativeGameEventResult>>> Find(string authenticatedUserId)
         {
             var query = _database.NegativeGameEvents.AsQueryable();
-            Console.WriteLine(query.Last().Id);
+
             var negativeGameEvents = await query
                 .ProjectToResult()
                 .ToListAsync();
 
             return new ServiceResult<IList<NegativeGameEventResult>>(negativeGameEvents);
         }
+
     }
 }

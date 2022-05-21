@@ -26,8 +26,6 @@ namespace ActionCommandGame.Services
         {
             var query = _database.PositiveGameEvents.AsQueryable();
 
-            //Console.WriteLine(query.Last().Id);
-
             //If we don't have an attack item, we can only get low-reward items.
             if (!hasAttackItem)
             {
