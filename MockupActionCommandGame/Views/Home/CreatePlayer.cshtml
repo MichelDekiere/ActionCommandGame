@@ -1,0 +1,26 @@
+﻿@using ActionCommandGame.Services.Model.Requests
+@using System.Collections
+@model CreatePlayerRequest
+
+<head>
+    <link rel="stylesheet" href="/css/CharacterSelection.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+</head>
+
+<div asp-validation-summary="ModelOnly"></div>
+<div class="container">
+    <div>
+        <div class="row">
+            <h1>Create Player</h1>
+        </div>
+        <div class="row">
+            <form method="post">
+                <input asp-for="Name" placeholder="Player Name" class="form-control">
+                <br/>
+                <input type="submit" value="@ViewData["submit_Button"]" class="btn btn-shine">
+            </form>
+        </div>
+    </div>
+</div>

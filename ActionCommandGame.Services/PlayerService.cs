@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using ActionCommandGame.Model;
 using ActionCommandGame.Repository;
 using ActionCommandGame.Services.Abstractions;
 using ActionCommandGame.Services.Extensions;
@@ -12,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ActionCommandGame.Services
 {
-    public class PlayerService: IPlayerService
+    public class PlayerService : IPlayerService
     {
         private readonly ActionCommandGameDbContext _database;
 
@@ -38,6 +39,26 @@ namespace ActionCommandGame.Services
                 .ToListAsync();
 
             return new ServiceResult<IList<PlayerResult>>(players);
+        }
+
+        public async Task<ServiceResult<CreatePlayerResult>> CreatePlayer(CreatePlayerRequest playerRequest,
+            string authenticatedUserId)
+        {
+            var player = new Player
+            {
+                Name = playerRequest.Name,
+                UserId = authenticatedUserId
+            };
+
+            await _database.Players.AddAsync(player);
+
+            _database.SaveChanges();
+            var result = new CreatePlayerResult
+            {
+                Name = playerRequest.Name
+            };
+            return new ServiceResult<CreatePlayerResult>(result);
+
         }
     }
 }

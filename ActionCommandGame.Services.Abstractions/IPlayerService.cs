@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using ActionCommandGame.Services.Model.Core;
 using ActionCommandGame.Services.Model.Filters;
+using ActionCommandGame.Services.Model.Requests;
 using ActionCommandGame.Services.Model.Results;
 
 namespace ActionCommandGame.Services.Abstractions
@@ -10,5 +11,6 @@ namespace ActionCommandGame.Services.Abstractions
     {
         Task<ServiceResult<PlayerResult>> GetAsync(int id, string authenticatedUserId);
         Task<ServiceResult<IList<PlayerResult>>> FindAsync(PlayerFilter filter, string authenticatedUserId);
+        Task<ServiceResult<CreatePlayerResult>> CreatePlayer(CreatePlayerRequest playerRequest, string authenticatedUserId);
     }
 }

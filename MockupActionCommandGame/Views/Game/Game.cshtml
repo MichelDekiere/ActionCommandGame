@@ -84,6 +84,16 @@
                     @if (gameResult.NegativeGameEvent is not null)
                     {
                         <h3>@gameResult.NegativeGameEvent.Description</h3>
+                        
+                        @if (gameResult.NegativeGameEventMessages is not null)
+                        {
+                            @foreach (var message in gameResult.NegativeGameEventMessages)
+                            {
+
+                                <h3>@message.Message</h3>
+                            }
+                        }
+
                         <h2>you have lost @gameResult.NegativeGameEvent.DefenseLoss defense </h2>
                     }
                     @if (gameResult.PositiveGameEvent is not null)
@@ -92,14 +102,7 @@
                         <h2>you have gained @gameResult.PositiveGameEvent.Money Cash,@gameResult.PositiveGameEvent.Experience </h2>
                     }
 
-                    @if (gameResult.NegativeGameEventMessages is not null)
-                    {
-                        @foreach (var message in gameResult.NegativeGameEventMessages)
-                        {
-
-                            <p>@message.Message</p>
-                        }
-                    }
+                    
 
                 }
                 else

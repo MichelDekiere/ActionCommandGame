@@ -4,6 +4,7 @@ using ActionCommandGame.Api.Authentication.Model;
 using ActionCommandGame.Sdk;
 using ActionCommandGame.Sdk.Abstractions;
 using ActionCommandGame.Services.Model.Filters;
+using ActionCommandGame.Services.Model.Requests;
 using ActionCommandGame.Ui.WebApp.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -18,14 +19,12 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
         private readonly IPlayerApi _playerApi;
         private readonly ITokenStore _tokenStore;
 
-        //private readonly UserManager<IdentityUser> _userManager;
-
-        public HomeController(IIdentityApi identityApi, ITokenStore tokenStore, IPlayerApi playerApi /*, UserManager<IdentityUser> userManager*/)
+        public HomeController(IIdentityApi identityApi, ITokenStore tokenStore, IPlayerApi playerApi)
         {
             _identityApi = identityApi;
             _tokenStore = tokenStore;
             _playerApi = playerApi;
-            //_userManager = userManager;
+            
         }
         
         public IActionResult LoginPage()
@@ -99,7 +98,7 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
             }
 
         }
-       /* public async Task<IActionResult> UpdateEmailAsync(string id)
+       /*public async Task<IActionResult> UpdateEmailAsync(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
             //await _userManager.UpdateNormalizedEmailAsync();
@@ -112,6 +111,19 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
             var players = await _playerApi.Find(new PlayerFilter() { FilterUserPlayers = true });
             
             return View(players.Data);
+        }
+
+        [HttpGet]
+        public IActionResult CreatePlayer()
+        {
+            return View(new CreatePlayerRequest());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreatePlayer([FromForm] CreatePlayerRequest player)
+        {
+            var createPlayer = await _playerApi.CreatePlayer(player);
+            return RedirectToAction("CharacterSelection");
         }
 
 

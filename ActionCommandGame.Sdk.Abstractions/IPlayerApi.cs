@@ -1,5 +1,6 @@
 ﻿using ActionCommandGame.Services.Model.Core;
 using ActionCommandGame.Services.Model.Filters;
+using ActionCommandGame.Services.Model.Requests;
 using ActionCommandGame.Services.Model.Results;
 
 namespace ActionCommandGame.Sdk.Abstractions
@@ -8,5 +9,7 @@ namespace ActionCommandGame.Sdk.Abstractions
     {
         Task<ServiceResult<PlayerResult>> GetAsync(int id);
         Task<ServiceResult<IList<PlayerResult>>> Find(PlayerFilter filter);
+        Task<ServiceResult<CreatePlayerResult>> CreatePlayer(CreatePlayerRequest playerRequest);
     }
 }
+
