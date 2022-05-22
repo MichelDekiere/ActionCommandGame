@@ -36,8 +36,22 @@ INSERT INTO [dbo].[PositiveGameEvent]
 		   500,
 		   35,
 		   25
-		   )
-
+		   ),
+		   ('Lady Coin'
+           ,'You find a nice looking silver coin, it has a lady''s face engraved on it, it''s probably worth something.'
+           ,45
+           ,10
+           ,400),
+		   ('Engraved blade'
+           ,'As you roam the dark hallways, you find a beautifully engraved blade on the wall. It''s dull, probably can''t even cut butter, but it might just be worth something'
+           ,150
+           ,80
+           ,200),
+		   ('Tophat'
+           ,'You just found a tophat, you put it on and look in a conveniently placed mirror. You look ridiculous, but you might just be able to sell it.'
+           ,45
+           ,10
+           ,400)
 GO
 
 
