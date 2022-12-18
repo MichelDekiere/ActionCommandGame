@@ -24,7 +24,6 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
             _identityApi = identityApi;
             _tokenStore = tokenStore;
             _playerApi = playerApi;
-            
         }
         
         public IActionResult LoginPage()

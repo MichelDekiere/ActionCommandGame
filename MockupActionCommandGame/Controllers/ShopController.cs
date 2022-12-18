@@ -28,6 +28,7 @@ namespace ActionCommandGame.Ui.WebApp.Controllers
 
         }
         
+        [Authorize]
         public async Task<ActionResult> Shop()
         {
             var playerId = await _playerStore.GetTokenAsync();
